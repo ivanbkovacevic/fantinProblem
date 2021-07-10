@@ -1,64 +1,20 @@
 import { StrictMode, useState } from "react";
 import ReactDOM from "react-dom";
+import Features from "./Features";
 
-export default function Policy() {
-  const [disableCheckBoxes, setDisableCheckBoxes] = useState("0");
-  const [policy, setPolicy] = useState([
-    {
-      selected: false,
-      ime: "pera",
-      godiste: 99,
-      features: [
-        { jedan: false },
-        { dva: false },
-        { tri: false },
-        { cetiri: false }
-      ]
-    },
-    {
-      selected: false,
-      ime: "mika",
-      godiste: 33,
-      features: [
-        { jedan: false },
-        { dva: false },
-        { tri: false },
-        { cetiri: false }
-      ]
-    },
-    {
-      selected: false,
-      ime: "zika",
-      godiste: 22,
-      features: [
-        { jedan: false },
-        { dva: false },
-        { tri: false },
-        { cetiri: false }
-      ]
-    }
-  ]);
+export default function Policy(props) {
+  const [disableCheckBoxes, setDisableCheckBoxes] = useState(true);
 
   const selectedPolicy = (idx) => {
-    let policyCopy = [...policy];
+    let policyCopy = [...props.policy];
     policyCopy[idx].selected = !policyCopy[idx].selected;
 
-    setPolicy(policyCopy);
-    let selecArr = [];
-    for (const i in policyCopy) {
-      selecArr.push(policyCopy[i].selected);
-      console.log(selecArr);
-    }
-
-    if (selecArr.some((value) => value === true)) {
-      setDisableCheckBoxes("1");
-    } else {
-      setDisableCheckBoxes("0");
-    }
+    props.setpolicy(policyCopy);
+    setDisableCheckBoxes(!disableCheckBoxes);
   };
 
   const featureSetting = (e) => {
-    let policyCopy = [...policy];
+    let policyCopy = [...props.policy];
 
     let featureName = e.target.id;
 
@@ -77,72 +33,30 @@ export default function Policy() {
             ];
             //    console.log('ulayi' + Object.keys(policyCopy[i].features[k]));
 
-            setPolicy(policyCopy);
+            props.setpolicy(policyCopy);
           }
         }
       }
     }
   };
 
-  const policyDrawing = policy.map((polc, idx) => {
-    return (
-      <div>
-        <button
-          onClick={() => selectedPolicy(idx)}
-          key={{ idx }}
-          style={
-            polc.selected
-              ? { backgroundColor: "red" }
-              : { backgroundColor: "yellow" }
-          }
-        >
-          {polc.ime}
-        </button>
-      </div>
-    );
-  });
   return (
     <div>
-      {policyDrawing}
-      <div style={{ marginBottom: "50px", opacity: `${disableCheckBoxes}` }}>
-        <input
-          onChange={(e) => featureSetting(e)}
-          type="checkbox"
-          name="toggleSwitch"
-          id="jedan"
-        />
-        <label htmlfor="toggleSwitch" style={{ fontSize: "20px" }}>
-          Feature 1
-        </label>
-        <input
-          type="checkbox"
-          name="toggleSwitch"
-          id="dva"
-          onChange={(e) => featureSetting(e)}
-        />
-        <label htmlfor="toggleSwitch" style={{ fontSize: "20px" }}>
-          Feature 2
-        </label>
-        <input
-          type="checkbox"
-          name="toggleSwitch"
-          id="tri"
-          onChange={(e) => featureSetting(e)}
-        />
-        <label htmlfor="toggleSwitch" style={{ fontSize: "20px" }}>
-          Feature 3
-        </label>
-        <input
-          type="checkbox"
-          name="toggleSwitch"
-          id="cetiri"
-          onChange={(e) => featureSetting(e)}
-        />
-        <label htmlfor="toggleSwitch" style={{ fontSize: "20px" }}>
-          Feature 4
-        </label>
-      </div>
-      {JSON.stringify(policy)}
+      <button
+        onClick={() => selectedPolicy(props.idx)}
+        key={props.idx}
+        style={
+          props.polc.selected
+            ? { backgroundColor: "red" }
+            : { backgroundColor: "yellow" }
+        }
+      >
+        {props.polc.ime}
+      </button>
+      <Features
+        featureSetting={featureSetting}
+        disableCheckBoxes={disableCheckBoxes}
+      />
     </div>
   );
 }
