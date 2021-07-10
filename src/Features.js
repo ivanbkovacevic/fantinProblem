@@ -5,6 +5,8 @@ export default function Policy(props) {
   return (
     <div
       style={{
+        display: "flex",
+        justifyContent: "center",
         marginBottom: "50px",
         opacity: props.disableCheckBoxes ? "0" : "1"
       }}
