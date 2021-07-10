@@ -18,7 +18,7 @@ export default function Policy(props) {
         id="jedan"
       />
       <label htmlfor="toggleSwitch" style={{ fontSize: "20px" }}>
-        Feature 1
+        Jedan
       </label>
       <input
         type="checkbox"
@@ -27,7 +27,7 @@ export default function Policy(props) {
         onChange={(e) => props.featureSetting(e)}
       />
       <label htmlfor="toggleSwitch" style={{ fontSize: "20px" }}>
-        Feature 2
+        Dva
       </label>
       <input
         type="checkbox"
@@ -36,7 +36,7 @@ export default function Policy(props) {
         onChange={(e) => props.featureSetting(e)}
       />
       <label htmlfor="toggleSwitch" style={{ fontSize: "20px" }}>
-        Feature 3
+        Tri
       </label>
       <input
         type="checkbox"
@@ -45,7 +45,7 @@ export default function Policy(props) {
         onChange={(e) => props.featureSetting(e)}
       />
       <label htmlfor="toggleSwitch" style={{ fontSize: "20px" }}>
-        Feature 4
+        Četiri
       </label>
     </div>
   );
