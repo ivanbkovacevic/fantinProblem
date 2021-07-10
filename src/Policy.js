@@ -2,15 +2,16 @@ import { StrictMode, useState } from "react";
 import ReactDOM from "react-dom";
 
 export default function Policy() {
+  const [disableCheckBoxes, setDisableCheckBoxes] = useState("0");
   const [policy, setPolicy] = useState([
     {
       selected: false,
       ime: "pera",
       godiste: 99,
       features: [
-        { jedan: true },
+        { jedan: false },
         { dva: false },
-        { tri: true },
+        { tri: false },
         { cetiri: false }
       ]
     },
@@ -19,9 +20,9 @@ export default function Policy() {
       ime: "mika",
       godiste: 33,
       features: [
-        { jedan: true },
+        { jedan: false },
         { dva: false },
-        { tri: true },
+        { tri: false },
         { cetiri: false }
       ]
     },
@@ -30,9 +31,9 @@ export default function Policy() {
       ime: "zika",
       godiste: 22,
       features: [
-        { jedan: true },
+        { jedan: false },
         { dva: false },
-        { tri: true },
+        { tri: false },
         { cetiri: false }
       ]
     }
@@ -41,7 +42,19 @@ export default function Policy() {
   const selectedPolicy = (idx) => {
     let policyCopy = [...policy];
     policyCopy[idx].selected = !policyCopy[idx].selected;
+
     setPolicy(policyCopy);
+    let selecArr = [];
+    for (const i in policyCopy) {
+      selecArr.push(policyCopy[i].selected);
+      console.log(selecArr);
+    }
+
+    if (selecArr.some((value) => value === true)) {
+      setDisableCheckBoxes("1");
+    } else {
+      setDisableCheckBoxes("0");
+    }
   };
 
   const featureSetting = (e) => {
@@ -91,7 +104,7 @@ export default function Policy() {
   return (
     <div>
       {policyDrawing}
-      <div style={{ marginBottom: "50px" }}>
+      <div style={{ marginBottom: "50px", opacity: `${disableCheckBoxes}` }}>
         <input
           onChange={(e) => featureSetting(e)}
           type="checkbox"
