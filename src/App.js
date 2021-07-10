@@ -56,7 +56,12 @@ export default function App() {
         Provalices da se menja state za svaku features za selectovane polise
       </p>
       {policyDrawing}
-      {JSON.stringify(policy)}
+      <p>Prva polisa</p>
+      {JSON.stringify(policy[0], null, "\t")}
+      <p>Druga polisa</p>
+      {JSON.stringify(policy[1], null, "\t")}
+      <p>Treca polisa</p>
+      {JSON.stringify(policy[2], null, "\t")}
     </div>
   );
 }
