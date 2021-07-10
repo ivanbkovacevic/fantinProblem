@@ -4,6 +4,7 @@ import Features from "./Features";
 
 export default function Policy(props) {
   const [disableCheckBoxes, setDisableCheckBoxes] = useState(true);
+  const [policySelected, setPoliceSelected] = useState(null);
 
   const selectedPolicy = (idx) => {
     let policyCopy = [...props.policy];
@@ -11,6 +12,8 @@ export default function Policy(props) {
 
     props.setpolicy(policyCopy);
     setDisableCheckBoxes(!disableCheckBoxes);
+    setPoliceSelected(idx);
+    console.log(typeof policySelected);
   };
 
   const featureSetting = (e) => {
@@ -19,7 +22,8 @@ export default function Policy(props) {
     let featureName = e.target.id;
 
     for (const i in policyCopy) {
-      if (policyCopy[i].selected === true) {
+      console.log(typeof i);
+      if (i === policySelected.toString()) {
         for (const k in policyCopy[i].features) {
           //   console.log(typeof(policyCopy[i].features[k])+' object keyz');
           // console.log(Object.keys(policyCopy[i].features[k])+' kijevi');

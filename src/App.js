@@ -5,6 +5,7 @@ import { StrictMode, useState } from "react";
 export default function App() {
   const [policy, setPolicy] = useState([
     {
+      id: 0,
       selected: false,
       ime: "pera",
       godiste: 99,
@@ -16,6 +17,7 @@ export default function App() {
       ]
     },
     {
+      id: 1,
       selected: false,
       ime: "mika",
       godiste: 33,
@@ -27,6 +29,7 @@ export default function App() {
       ]
     },
     {
+      id: 2,
       selected: false,
       ime: "zika",
       godiste: 22,
