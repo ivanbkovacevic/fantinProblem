@@ -45,7 +45,7 @@ export default function Policy(props) {
         onChange={(e) => props.featureSetting(e)}
       />
       <label htmlfor="toggleSwitch" style={{ fontSize: "20px" }}>
-        Feature 4-
+        Feature 4
       </label>
     </div>
   );
